@@ -1,22 +1,27 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="uk" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <meta name="description" content="Інтерактивні завдання для відпрацювання німецької лексики та граматики на основі аудіо.">
     <title>Інтерактивні завдання - Deutsch+Profis</title>
-    <!-- Google Fonts: Inter -->
+
+    <!-- Шрифт Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN -->
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f9fafb; /* gray-50 */
+            background-color: #f9fafb;
+            margin: 0;
+            padding: 0;
         }
-        /* Стилі для select як fallback + покращений вигляд */
         select {
             padding: .5rem; 
             border-radius: .375rem; 
@@ -25,162 +30,72 @@
             -moz-appearance: none;
             appearance: none;
             background-color: #fff;
-            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\' fill=\'none\' stroke=\'%236b7280\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M6 8l4 4 4-4\'/></svg>');
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="%236b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8l4 4 4-4"/></svg>');
             background-repeat: no-repeat;
             background-position: right 0.75rem center;
             background-size: 1.25em 1.25em;
             padding-right: 2.5rem;
         }
-        fieldset { border: none; padding: 0; }
-        legend { padding: 0; }
+        fieldset {
+            border: none;
+            padding: 0;
+        }
+        legend {
+            padding: 0;
+        }
+        /* Адаптивні відступи */
+        .container {
+            max-width: 1000px;
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
-    <div class="container mx-auto p-4 md:p-8 lg:p-12">
-        <main class="bg-white rounded-3xl shadow-xl p-6 md:p-12">
-            <header class="text-center mb-10">
-                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900">
-                    Інтерактивні <span class="text-green-600">завдання</span>
-                </h1>
-                <p class="text-lg text-gray-700 mt-2">Перевірте свої знання та закріпіть матеріал.</p>
-            </header>
+<div class="container mx-auto p-4 md:p-6 lg:p-8">
+    <main class="bg-white rounded-3xl shadow-xl p-6 md:p-10">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">
+                Інтерактивні <span class="text-green-600">завдання</span>
+            </h1>
+            <p class="text-lg text-gray-700 mt-2">Перевірте свої знання та закріпіть матеріал.</p>
+        </header>
 
-            <!-- Аудіо -->
-            <div class="bg-gray-100 p-6 rounded-2xl shadow-inner border border-l-4 border-green-600 mb-10">
-                <p class="text-lg font-semibold text-gray-900 mb-4">Прослухайте аудіо та виконайте завдання:</p>
-                <div class="w-full">
-                    <iframe src="https://drive.google.com/file/d/1MjRb-umln-N6sUaiVHyKLbgizVlV6dqR/preview" width="100%" height="96" style="border:none; overflow:hidden;" allow="autoplay" title="Аудіоплеєр із завданням"></iframe>
-                    <noscript>
-                        <p class="mt-2 text-gray-600">
-                            Ваш браузер не підтримує JavaScript — 
-                            <a href="https://drive.google.com/file/d/1MjRb-umln-N6sUaiVHyKLbgizVlV6dqR/view?usp=sharing" target="_blank" rel="noopener" class="text-green-600 hover:underline">
-                                завантажте аудіофайл напряму
-                            </a>.
-                        </p>
-                    </noscript>
-                </div>
+        <!-- Аудіо -->
+        <div class="bg-gray-100 p-6 rounded-2xl shadow-inner border-l-4 border-green-600 mb-8">
+            <p class="text-lg font-semibold text-gray-900 mb-4">Прослухайте аудіо та виконайте завдання:</p>
+            <iframe src="https://drive.google.com/file/d/1MjRb-umln-N6sUaiVHyKLbgizVlV6dqR/preview" width="100%" height="80" style="border:none;" allow="autoplay"></iframe>
+        </div>
+
+        <form id="quizForm">
+            <!-- Завдання 1 -->
+            <fieldset class="mb-8">
+                <legend class="text-xl font-bold mb-4">Завдання 1: На розуміння прослуханого</legend>
+                <ol class="list-decimal list-inside space-y-6">
+                    <li>
+                        <label for="q1">Скільки років Тарасу?</label>
+                        <select id="q1" name="q1" class="mt-1 block w-full max-w-xs"></select>
+                    </li>
+                </ol>
+            </fieldset>
+
+            <!-- Результат -->
+            <div id="result" class="hidden text-center bg-gray-100 p-4 rounded-2xl mb-6" role="status"></div>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
+                <button type="submit" id="check-btn" class="w-full sm:w-auto bg-green-600 text-white font-bold py-2 px-6 rounded-full hover:bg-green-700 transition">
+                    Перевірити
+                </button>
+                <button type="button" id="reset-btn" class="w-full sm:w-auto bg-gray-200 text-gray-700 font-bold py-2 px-6 rounded-full hover:bg-gray-300 transition">
+                    Скинути
+                </button>
             </div>
+        </form>
+    </main>
+</div>
 
-            <form id="quizForm">
-                <!-- Завдання 1 -->
-                <fieldset class="mb-10">
-                    <legend class="text-2xl font-bold text-gray-900 mb-4 w-full">Завдання 1: На розуміння прослуханого</legend>
-                    <p class="text-gray-800 mb-6">У цьому завданні перевіряється, наскільки добре ви зрозуміли зміст аудіо. Оберіть варіант, що найточніше відповідає інформації з розповіді.</p>
-                    <div class="space-y-4">
-                        <ol class="list-decimal list-inside space-y-6 text-gray-800">
-                            <li>
-                                <label for="q1" class="cursor-pointer">Скільки років Тарасу?</label>
-                                <select id="q1" name="q1" aria-label="Вибір віку Тараса" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                                    <option value="">-- Оберіть --</option><option value="a">18</option><option value="b">19</option><option value="c">20</option>
-                                </select>
-                            </li>
-                            <li>
-                                <label for="q2" class="cursor-pointer">Яка спеціальність Тараса?</label>
-                                <select id="q2" name="q2" aria-label="Вибір спеціальності Тараса" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                                    <option value="">-- Оберіть --</option><option value="a">Інженерія</option><option value="b">Економіка</option><option value="c">Агрономія</option>
-                                </select>
-                            </li>
-                            <li>
-                                <label for="q3" class="cursor-pointer">Чим Тарас займався з дитинства?</label>
-                                <select id="q3" name="q3" aria-label="Вибір заняття Тараса з дитинства" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                                    <option value="">-- Оберіть --</option><option value="a">Грав на музичних інструментах</option><option value="b">Допомагав батькам у селі</option><option value="c">Вивчав комп'ютерні технології</option>
-                                </select>
-                            </li>
-                            <li>
-                                <label for="q4" class="cursor-pointer">Чому Тарас вивчає німецьку мову?</label>
-                                <select id="q4" name="q4" aria-label="Вибір причини вивчення німецької мови" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                                    <option value="">-- Оберіть --</option><option value="a">Щоб отримати стипендію</option><option value="b">Щоб краще спілкуватися з іншими</option><option value="c">Щоб подорожувати Німеччиною</option>
-                                </select>
-                            </li>
-                            <li>
-                                <label for="q5" class="cursor-pointer">Яка головна мета Тараса?</label>
-                                <select id="q5" name="q5" aria-label="Вибір головної мети Тараса" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                                    <option value="">-- Оберіть --</option><option value="a">Знайти постійну роботу в Німеччині</option><option value="b">Закінчити коледж</option><option value="c">Пройти практику на німецькому агропідприємстві</option>
-                                </select>
-                            </li>
-                        </ol>
-                    </div>
-                </fieldset>
-
-                <!-- Завдання 2 -->
-                <fieldset class="mb-10">
-                    <legend class="text-2xl font-bold text-gray-900 mb-4 w-full">Завдання 2: Робота зі словником</legend>
-                    <p class="text-gray-800 mb-6">Це завдання допоможе вам закріпити ключову лексику з тексту. Для кожного українського слова знайдіть відповідний німецький переклад у списку.</p>
-                    <div class="space-y-4">
-                        <ol class="list-decimal list-inside space-y-6 text-gray-800">
-                            <li><label for="v1" class="cursor-pointer">Студент —</label> <select id="v1" name="v1" aria-label="Переклад слова Студент" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"><option value="">-- Оберіть --</option><option value="Schüler">Schüler</option><option value="Student">Student</option><option value="Lehrer">Lehrer</option></select></li>
-                            <li><label for="v2" class="cursor-pointer">Коледж —</label> <select id="v2" name="v2" aria-label="Переклад слова Коледж" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"><option value="">-- Оберіть --</option><option value="College">College</option><option value="Schule">Schule</option><option value="Universität">Universität</option></select></li>
-                            <li><label for="v3" class="cursor-pointer">Спеціальність —</label> <select id="v3" name="v3" aria-label="Переклад слова Спеціальність" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"><option value="">-- Оберіть --</option><option value="Hobby">Hobby</option><option value="Beruf">Beruf</option><option value="Fachrichtung">Fachrichtung</option></select></li>
-                            <li><label for="v4" class="cursor-pointer">Батьки —</label> <select id="v4" name="v4" aria-label="Переклад слова Батьки" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"><option value="">-- Оберіть --</option><option value="Eltern">Eltern</option><option value="Freunde">Freunde</option><option value="Geschwister">Geschwister</option></select></li>
-                            <li><label for="v5" class="cursor-pointer">Трактор —</label> <select id="v5" name="v5" aria-label="Переклад слова Трактор" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"><option value="">-- Оберіть --</option><option value="Auto">Auto</option><option value="Traktor">Traktor</option><option value="Bus">Bus</option></select></li>
-                            <li><label for="v6" class="cursor-pointer">Знання —</label> <select id="v6" name="v6" aria-label="Переклад слова Знання" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"><option value="">-- Оберіть --</option><option value="Meinungen">Meinungen</option><option value="Wissen">Wissen</option><option value="Kenntnisse">Kenntnisse</option></select></li>
-                            <li><label for="v7" class="cursor-pointer">Фізичний —</label> <select id="v7" name="v7" aria-label="Переклад слова Фізичний" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"><option value="">-- Оберіть --</option><option value="körperlich">körperlich</option><option value="geistig">geistig</option><option value="emotional">emotional</option></select></li>
-                            <li><label for="v8" class="cursor-pointer">Ціль (мета) —</label> <select id="v8" name="v8" aria-label="Переклад слова Ціль" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"><option value="">-- Оберіть --</option><option value="Weg">Weg</option><option value="Ziel">Ziel</option><option value="Start">Start</option></select></li>
-                            <li><label for="v9" class="cursor-pointer">Команда —</label> <select id="v9" name="v9" aria-label="Переклад слова Команда" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"><option value="">-- Оберіть --</option><option value="Gruppe">Gruppe</option><option value="Klasse">Klasse</option><option value="Team">Team</option></select></li>
-                            <li><label for="v10" class="cursor-pointer">Практика (стажування) —</label> <select id="v10" name="v10" aria-label="Переклад слова Практика" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"><option value="">-- Оберіть --</option><option value="Arbeit">Arbeit</option><option value="Praktikum">Praktikum</option><option value="Urlaub">Urlaub</option></select></li>
-                        </ol>
-                    </div>
-                </fieldset>
-
-                <!-- Завдання 3 -->
-                <fieldset class="mb-10">
-                    <legend class="text-2xl font-bold text-gray-900 mb-4 w-full">Завдання 3: Граматика</legend>
-                    <p class="text-gray-800 mb-6">Тут ви зможете перевірити свої знання граматики. Оберіть правильну форму дієслова або іменника, щоб доповнити речення з тексту.</p>
-                    <div class="space-y-4">
-                        <ol class="list-decimal list-inside space-y-6 text-gray-800">
-                            <li>
-                                <label for="g1" class="cursor-pointer">Ich heiße Taras, bin 19 Jahre alt und ______ am Agrarcollege.</label>
-                                <select id="g1" name="g1" aria-label="Вибір правильної форми дієслова studieren" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                                    <option value="">--</option><option value="studiere">studiere</option><option value="studiert">studiert</option><option value="studieren">studieren</option>
-                                </select>
-                            </li>
-                            <li>
-                                <label for="g2" class="cursor-pointer">Ich helfe meinen ______ auf dem Land beim Anbau von Weizen und Mais.</label>
-                                <select id="g2" name="g2" aria-label="Вибір правильної форми слова Eltern" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                                    <option value="">--</option><option value="Eltern">Eltern</option><option value="Elter">Elter</option><option value="Elterne">Elterne</option>
-                                </select>
-                            </li>
-                            <li>
-                                <label for="g3" class="cursor-pointer">Ich habe praktische ______ mit Landtechnik.</label>
-                                <select id="g3" name="g3" aria-label="Вибір правильної форми слова Erfahrung" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                                    <option value="">--</option><option value="Erfahrung">Erfahrung</option><option value="Erfahrungen">Erfahrungen</option><option value="Erfahren">Erfahren</option>
-                                </select>
-                            </li>
-                            <li>
-                                <label for="g4" class="cursor-pointer">Ich ______ derzeit Deutsch, um mich im Team besser verständigen zu können.</label>
-                                <select id="g4" name="g4" aria-label="Вибір правильної форми дієслова lernen" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                                    <option value="">--</option><option value="lerne">lerne</option><option value="lernst">lernst</option><option value="lernt">lernt</option>
-                                </select>
-                            </li>
-                            <li>
-                                <label for="g5" class="cursor-pointer">Mein ______ ist es, ein Praktikum in einem deutschen Unternehmen zu absolvieren.</label>
-                                <select id="g5" name="g5" aria-label="Вибір правильної форми слова Ziel" class="mt-2 block w-full max-w-xs rounded-lg border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                                    <option value="">--</option><option value="Ziel">Ziel</option><option value="Ziele">Ziele</option><option value="Zeil">Zeil</option>
-                                </select>
-                            </li>
-                        </ol>
-                    </div>
-                </fieldset>
-                
-                <!-- Результат -->
-                <div id="result" class="hidden text-center bg-gray-100 p-6 rounded-2xl mb-6" aria-live="polite" role="status"></div>
-                
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
-                    <button type="submit" id="check-btn" class="w-full sm:w-auto bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-green-700 transition duration-300 transform hover:scale-105">
-                        Перевірити
-                    </button>
-                    <button type="button" id="reset-btn" class="w-full sm:w-auto bg-gray-200 text-gray-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-300 transition duration-300 transform hover:scale-105">
-                        Скинути
-                    </button>
-                </div>
-            </form>
-        </main>
-
-        <footer class="text-center p-4 mt-8 text-gray-600">
-            &copy; 2025 Deutsch+Profis. Усі права захищені.
-        </footer>
-    </div>
+<footer class="text-center p-4 mt-8 text-gray-600">
+    &copy; 2025 Deutsch+Profis. Усі права захищені.
+</footer>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -188,22 +103,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultDiv = document.getElementById('result');
     const resetBtn = document.getElementById('reset-btn');
 
-    const answers = {
-        q1: 'b', q2: 'c', q3: 'b', q4: 'b', q5: 'c',
-        v1: 'Student', v2: 'College', v3: 'Fachrichtung', v4: 'Eltern', v5: 'Traktor', v6: 'Kenntnisse', v7: 'körperlich', v8: 'Ziel', v9: 'Team', v10: 'Praktikum',
-        g1: 'studiere', g2: 'Eltern', g3: 'Erfahrung', g4: 'lerne', g5: 'Ziel'
-    };
+    const answers = { q1: 'b' };
     const totalQuestions = Object.keys(answers).length;
-
-    const defaultClasses = ['border-gray-300'];
-    const correctClasses = ['border-green-500', 'bg-green-50', 'text-green-900'];
-    const incorrectClasses = ['border-red-500', 'bg-red-50', 'text-red-900'];
-    const unansweredClasses = ['border-yellow-500','bg-yellow-50','text-yellow-900']; // опційно: незаповнені
 
     function clearPreviousFeedback() {
         document.querySelectorAll('select').forEach(input => {
-            input.classList.remove(...correctClasses, ...incorrectClasses, ...unansweredClasses);
-            input.classList.add(...defaultClasses);
+            input.classList.remove('border-green-500','bg-green-50','text-green-900','border-red-500','bg-red-50','text-red-900');
+            input.classList.add('border-gray-300');
         });
         resultDiv.classList.add('hidden');
     }
@@ -211,35 +117,21 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(event) {
         event.preventDefault();
         let score = 0;
-        let blanks = 0;
         clearPreviousFeedback();
 
         for (const name in answers) {
             const inputElement = form.elements[name];
             if (!inputElement) continue;
-
-            inputElement.classList.remove(...defaultClasses, ...correctClasses, ...incorrectClasses, ...unansweredClasses);
-
-            if (!inputElement.value) {
-                blanks++;
-                inputElement.classList.add(...unansweredClasses);
-                continue;
-            }
-
             const isCorrect = inputElement.value.trim().toLowerCase() === answers[name].toLowerCase();
             if (isCorrect) {
                 score++;
-                inputElement.classList.add(...correctClasses);
+                inputElement.classList.add('border-green-500','bg-green-50','text-green-900');
             } else {
-                inputElement.classList.add(...incorrectClasses);
+                inputElement.classList.add('border-red-500','bg-red-50','text-red-900');
             }
         }
 
-        const msg = blanks
-          ? \`Ви набрали <strong class="text-green-600">\${score}</strong> з <strong>\${totalQuestions}</strong> балів. Порожніх відповідей: <strong>\${blanks}</strong>.\`
-          : \`Ви набрали <strong class="text-green-600">\${score}</strong> з <strong>\${totalQuestions}</strong> балів!\`;
-
-        resultDiv.innerHTML = \`<span class="text-xl font-bold text-gray-800">\${msg}</span>\`;
+        resultDiv.innerHTML = `Ви набрали <strong class="text-green-600">${score}</strong> з <strong>${totalQuestions}</strong> балів!`;
         resultDiv.classList.remove('hidden');
         resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
