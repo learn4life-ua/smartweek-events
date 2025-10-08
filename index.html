@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ПРОГРАМА тижня циклової комісії загальноосвітніх дисциплін
-«SmartWeek: Вчися. Грай. Перемагай» (13-17 жовтня 2025 року)</title>
+    <title>ПРОГРАМА тижня циклової комісії загальноосвітніх дисциплін «SmartWeek: Вчися. Грай. Перемагай» (13-17 жовтня 2025 року)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -37,18 +36,29 @@
         /* --- Timeline Styles --- */
         .timeline-container {
             position: relative;
-            padding-left: 3.5rem; /* Space for the timeline line and dots */
+            padding-left: 2.5rem; /* Responsive padding */
         }
+        @media (min-width: 640px) {
+            .timeline-container {
+                padding-left: 3.5rem;
+            }
+        }
+
         .timeline-container::before {
             content: '';
             position: absolute;
-            left: 1.25rem;
+            left: 0.75rem; /* Responsive position */
             top: 1.75rem;
             bottom: 0;
             width: 4px;
             background-color: #374151; /* gray-700 */
             border-radius: 2px;
             transform: translateX(-50%);
+        }
+        @media (min-width: 640px) {
+            .timeline-container::before {
+                left: 1.25rem;
+            }
         }
         .timeline-item {
             position: relative;
@@ -57,7 +67,7 @@
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -2.25rem; /* Position the dot on the line */
+            left: -1.75rem; /* Responsive position */
             top: 1.75rem; /* Align vertically with the button */
             height: 1.25rem;
             width: 1.25rem;
@@ -67,6 +77,12 @@
             transform: translateY(-50%);
             z-index: 10;
         }
+        @media (min-width: 640px) {
+            .timeline-item::before {
+                 left: -2.25rem;
+            }
+        }
+
 
         /* --- Animation Styles --- */
         @keyframes fadeInUp {
@@ -102,10 +118,10 @@
 
     <div class="container mx-auto px-4 py-12">
         <header class="text-center mb-10 opacity-0">
-            <img src="smartweek-banner1.png" alt="Банер SmartWeek" class="max-w-lg mx-auto mb-8 rounded-lg">
-            <h2 class="text-2xl text-gray-300 mb-4">ВСП «Аграрно-економічний фаховий коледж ПДАУ»</h2>
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">ПРОГРАМА тижня циклової комісії загальноосвітніх дисциплін</h1>
-            <p class="text-lg text-gray-400">«SmartWeek: Вчися. Грай. Перемагай» (13-17 жовтня 2025 року)</p>
+            <img src="smartweek-banner1.png" alt="Банер SmartWeek" class="w-full max-w-lg mx-auto mb-8 rounded-lg">
+            <h2 class="text-xl sm:text-2xl text-gray-300 mb-4">ВСП «Аграрно-економічний фаховий коледж ПДАУ»</h2>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">ПРОГРАМА тижня циклової комісії загальноосвітніх дисциплін</h1>
+            <p class="text-base sm:text-lg text-gray-400">«SmartWeek: Вчися. Грай. Перемагай» (13-17 жовтня 2025 року)</p>
         </header>
 
         <main id="accordion-group" class="max-w-4xl mx-auto">
