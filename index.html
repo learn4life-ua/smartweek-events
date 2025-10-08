@@ -1,148 +1,514 @@
 <!DOCTYPE html>
-<html lang="uk" translate="no">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google" content="notranslate">
-    <meta name="description" content="Інтерактивні завдання для відпрацювання німецької лексики та граматики на основі аудіо.">
-    <title>Інтерактивні завдання - Deutsch+Profis</title>
-
-    <!-- Шрифт Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
+    <title>Заходи Тижня циклової комісії 2025</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f9fafb;
-            margin: 0;
-            padding: 0;
         }
-        select {
-            padding: .5rem; 
-            border-radius: .375rem; 
-            border: 1px solid #d1d5db;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background-color: #fff;
-            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="%236b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8l4 4 4-4"/></svg>');
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            background-size: 1.25em 1.25em;
-            padding-right: 2.5rem;
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.25, 0.1, 0.25, 1.0);
         }
-        fieldset {
-            border: none;
-            padding: 0;
+        .accordion-button .icon {
+            transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1.0);
         }
-        legend {
-            padding: 0;
+        .accordion-button[aria-expanded="true"] .icon {
+            transform: rotate(180deg);
         }
-        /* Адаптивні відступи */
-        .container {
-            max-width: 1000px;
+        .accordion-button:focus-visible {
+            outline: 2px solid #FBBF24; /* yellow-400 */
+            outline-offset: 2px;
+        }
+        .day-header {
+            border-bottom: 2px solid #374151; /* gray-700 */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        @media print {
+            .accordion-content {
+                max-height: none !important;
+                overflow: visible !important;
+            }
+            .accordion-button .icon {
+                display: none;
+            }
+            h1, p, h2, h3 {
+                color: #000 !important;
+            }
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="bg-gray-900 text-gray-200">
 
-<div class="container mx-auto p-4 md:p-6 lg:p-8">
-    <main class="bg-white rounded-3xl shadow-xl p-6 md:p-10">
-        <header class="text-center mb-8">
-            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">
-                Інтерактивні <span class="text-green-600">завдання</span>
-            </h1>
-            <p class="text-lg text-gray-700 mt-2">Перевірте свої знання та закріпіть матеріал.</p>
+    <div class="container mx-auto px-4 py-12">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">ПРОГРАМА тижня циклової комісії загальноосвітніх дисциплін</h1>
+            <p class="text-lg text-gray-400">«SmartWeek: Вчися. Грай. Перемагай» (13-17 жовтня 2025 року)</p>
         </header>
 
-        <!-- Аудіо -->
-        <div class="bg-gray-100 p-6 rounded-2xl shadow-inner border-l-4 border-green-600 mb-8">
-            <p class="text-lg font-semibold text-gray-900 mb-4">Прослухайте аудіо та виконайте завдання:</p>
-            <iframe src="https://drive.google.com/file/d/1MjRb-umln-N6sUaiVHyKLbgizVlV6dqR/preview" width="100%" height="80" style="border:none;" allow="autoplay"></iframe>
-        </div>
-
-        <form id="quizForm">
-            <!-- Завдання 1 -->
-            <fieldset class="mb-8">
-                <legend class="text-xl font-bold mb-4">Завдання 1: На розуміння прослуханого</legend>
-                <ol class="list-decimal list-inside space-y-6">
-                    <li>
-                        <label for="q1">Скільки років Тарасу?</label>
-                        <select id="q1" name="q1" class="mt-1 block w-full max-w-xs"></select>
-                    </li>
-                </ol>
-            </fieldset>
-
-            <!-- Результат -->
-            <div id="result" class="hidden text-center bg-gray-100 p-4 rounded-2xl mb-6" role="status"></div>
-
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
-                <button type="submit" id="check-btn" class="w-full sm:w-auto bg-green-600 text-white font-bold py-2 px-6 rounded-full hover:bg-green-700 transition">
-                    Перевірити
-                </button>
-                <button type="button" id="reset-btn" class="w-full sm:w-auto bg-gray-200 text-gray-700 font-bold py-2 px-6 rounded-full hover:bg-gray-300 transition">
-                    Скинути
-                </button>
+        <main id="accordion-group" class="max-w-4xl mx-auto">
+            
+            <!-- Понеділок -->
+            <div class="day-section">
+                <h2 class="day-header text-3xl font-bold text-yellow-400">13 Жовтня (понеділок)</h2>
+                <div class="space-y-4">
+                    <div id="event-2" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-2" class="text-xl font-semibold text-white">
+                            <button id="button-2" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-2">
+                                <span>🏃‍♂️ Естафети в рамках «Cool Games»</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-2" role="region" aria-labelledby="header-2" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-red-600"></i>Час та група:</strong> 2 пара, 11-3, 21-м</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-red-600"></i>Місце:</strong> Спортивний майданчик</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-red-600"></i>Викладач(і):</strong> Світлана Дука, Микола Мушегов</p>
+                                <p><strong><i class="fas fa-book mr-2 text-red-600"></i>Дисципліна:</strong> Фізична культура</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-red-600"></i>Мета:</strong> Зробити заняття фізичної культури цікавими, масово залучити до рухової активності.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-red-600"></i>Ключові завдання:</strong> Активізація, цікаві заняття, всебічний та культурний розвиток.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-red-600"></i>Очікувані результати:</strong> Зробити заняття спортом веселими та масовими.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="event-1" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-1" class="text-xl font-semibold text-white">
+                            <button id="button-1" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-1">
+                                <span>🕵️‍♀️ Інтелектуальна гра «НотаЄнота. Шахрайські схеми»</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-1" role="region" aria-labelledby="header-1" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-yellow-400"></i>Час та група:</strong> 3-4 пари, 11-i</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-yellow-400"></i>Місце:</strong> ПОУНБ</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-yellow-400"></i>Викладач(і):</strong> Іван Кононенко</p>
+                                <p><strong><i class="fas fa-book mr-2 text-yellow-400"></i>Дисципліна:</strong> Громадянська освіта</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-yellow-400"></i>Мета:</strong> Навчити учасників розпізнавати різноманітні шахрайські схеми та методи маніпуляцій, підвищити рівень інформаційної гігієни.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-yellow-400"></i>Ключові завдання:</strong> Показати механізми роботи шахрайських схем, сформувати практичні навички, стимулювати критичне мислення.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-yellow-400"></i>Очікувані результати:</strong> Навчальні, пізнавальні, практичні, поведінкові, емоційні та соціальні.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="event-4" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-4" class="text-xl font-semibold text-white">
+                            <button id="button-4" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-4">
+                                <span>📜 «Чумацькі мандри як сторінка історії української культури»</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-4" role="region" aria-labelledby="header-4" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-yellow-400"></i>Час та група:</strong> 4 пара, 21-м</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-yellow-400"></i>Місце:</strong> ауд. № 11</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-yellow-400"></i>Викладач(і):</strong> Тетяна Матвієнко</p>
+                                <p><strong><i class="fas fa-book mr-2 text-yellow-400"></i>Дисципліна:</strong> Історія України</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-yellow-400"></i>Мета:</strong> Дослідити чумакування як торгівельно-економічне та культурне явище.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-yellow-400"></i>Ключові завдання:</strong> З'ясувати причини виникнення, охарактеризувати значення, виховати повагу до спадщини.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-yellow-400"></i>Очікувані результати:</strong> Студенти матимуть цілісне уявлення про чумакування та його роль.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div id="event-3" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-3" class="text-xl font-semibold text-white">
+                            <button id="button-3" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-3">
+                                <span>✨ Старт SmartWeek Challenge: «Академічна доброчесність у дзеркалі історії»</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-3" role="region" aria-labelledby="header-3" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-teal-500"></i>Час та група:</strong> Перші курси, Протягом тижня</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-teal-500"></i>Викладач(і):</strong> Наталія Губарь, Тетяна Матвієнко, Олена Сувальська</p>
+                                <p><strong><i class="fas fa-book mr-2 text-teal-500"></i>Дисципліна:</strong> Історія України</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-teal-500"></i>Мета:</strong> Сформувати розуміння академічної доброчесності як складової особистої честі та професійної культури.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-teal-500"></i>Ключові завдання:</strong> Ознайомити з принципами, показати історичні приклади, сформувати вміння розрізняти доброчесні/недоброчесні дії.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-teal-500"></i>Очікувані результати:</strong> Студенти усвідомлять значення чесності, навчаться відрізняти плагіат від коректного використання джерел.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="event-5" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-5" class="text-xl font-semibold text-white">
+                            <button id="button-5" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-5">
+                                <span>🏛️ Віртуальні екскурсії музеями Полтавщини</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-5" role="region" aria-labelledby="header-5" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-red-600"></i>Час та група:</strong> Протягом тижня, Перші курси, 21-а, 22-а</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-red-600"></i>Викладач(і):</strong> Наталія Кононенко, Сергій Купченко</p>
+                                <p><strong><i class="fas fa-book mr-2 text-red-600"></i>Дисципліна:</strong> Мистецтво, Географія</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-red-600"></i>Мета:</strong> Розширити культурний світогляд студентів, ознайомивши їх із культурною спадщиною Полтавського краю через сучасні цифрові технології.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-red-600"></i>Ключові завдання:</strong> Ознайомити з експозиціями ключових музеїв; розвинути навички аналізу мистецьких творів; стимулювати інтерес до історії рідного краю.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-red-600"></i>Очікувані результати:</strong> Студенти знають про видатні музеї регіону, вміють орієнтуватися у віртуальному музейному просторі та виявляють зацікавленість до культурного життя.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-    </main>
-</div>
 
-<footer class="text-center p-4 mt-8 text-gray-600">
-    &copy; 2025 Deutsch+Profis. Усі права захищені.
-</footer>
+            <!-- Вівторок -->
+            <div class="day-section">
+                <h2 class="day-header text-3xl font-bold text-yellow-400">14 Жовтня (вівторок)</h2>
+                <div class="space-y-4">
+                     <div id="event-8" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-8" class="text-xl font-semibold text-white">
+                            <button id="button-8" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-8">
+                                <span>🇬🇧 «Speak & Play: інтерактивні ігри англійською»</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-8" role="region" aria-labelledby="header-8" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-red-600"></i>Час та група:</strong> 3 пара, 21-м, 21-3</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-red-600"></i>Місце:</strong> ауд № 10</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-red-600"></i>Викладач(і):</strong> Дарія Корабель</p>
+                                <p><strong><i class="fas fa-book mr-2 text-red-600"></i>Дисципліна:</strong> Англійська мова</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-red-600"></i>Мета:</strong> Розвивати мовленнєві навички через ігрову діяльність та стимулювати творче використання англійської мови.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-red-600"></i>Ключові завдання:</strong> Активізувати словниковий запас, формувати впевненість у говорінні, розвивати командну взаємодію.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-red-600"></i>Очікувані результати:</strong> Студенти вдосконалять навички спонтанного мовлення, збагатять словниковий запас.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div id="event-6" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-6" class="text-xl font-semibold text-white">
+                            <button id="button-6" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-6">
+                                <span>📚 «У слові — сила: грай та відкривай літературу»</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-6" role="region" aria-labelledby="header-6" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-teal-500"></i>Час та група:</strong> 3-4 пари, 21-лд, 21-м</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-teal-500"></i>Місце:</strong> ПОУНБ</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-teal-500"></i>Викладач(і):</strong> Олена Степаненко, Світлана Глушко</p>
+                                <p><strong><i class="fas fa-book mr-2 text-teal-500"></i>Дисципліна:</strong> Українська література</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-teal-500"></i>Мета:</strong> Розвивати інтерес до української літератури через ігрові форми.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-teal-500"></i>Ключові завдання:</strong> Формування читацького інтересу, залучення до активного читання та обговорення.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-teal-500"></i>Очікувані результати:</strong> Студенти виявляють інтерес до літератури, прагнуть читати більше.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div id="event-7" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-7" class="text-xl font-semibold text-white">
+                            <button id="button-7" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-7">
+                                <span>🏆 Олімпійський урок «Sport games»</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-7" role="region" aria-labelledby="header-7" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-yellow-400"></i>Час та група:</strong> 3-4 пари, 11-a, 12-a</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-yellow-400"></i>Місце:</strong> Спортивний майданчик</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-yellow-400"></i>Викладач(і):</strong> Павло Мотрій, В'ячеслав Балашов</p>
+                                <p><strong><i class="fas fa-book mr-2 text-yellow-400"></i>Дисципліна:</strong> Фізична культура</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-yellow-400"></i>Мета:</strong> Популяризація серед студентів олімпійських видів спорту.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-yellow-400"></i>Ключові завдання:</strong> Рухова активність, спритність, витривалість, швидкість.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-yellow-400"></i>Очікувані результати:</strong> Залучення більше студентів до масового спорту.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('quizForm');
-    const resultDiv = document.getElementById('result');
-    const resetBtn = document.getElementById('reset-btn');
+            <!-- Середа -->
+            <div class="day-section">
+                <h2 class="day-header text-3xl font-bold text-yellow-400">15 Жовтня (середа)</h2>
+                 <div class="space-y-4">
+                     <div id="event-9" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-9" class="text-xl font-semibold text-white">
+                            <button id="button-9" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-9">
+                                <span>🚒 Екскурсія до Музею МЧС</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-9" role="region" aria-labelledby="header-9" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-teal-500"></i>Час та група:</strong> 2-4 пари, 11-a</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-teal-500"></i>Місце:</strong> Музей</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-teal-500"></i>Викладач(і):</strong> Наталія Кононенко, Павло Мотрій</p>
+                                <p><strong><i class="fas fa-book mr-2 text-teal-500"></i>Дисципліна:</strong> ЗУ/ОМЗ</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-teal-500"></i>Мета:</strong> Підвищити обізнаність щодо правил безпеки життєдіяльності та ознайомити з роботою рятувальних служб.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-teal-500"></i>Ключові завдання:</strong> Продемонструвати оснащення служби МЧС; ознайомити з причинами надзвичайних ситуацій; сформувати алгоритм дій при пожежі.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-teal-500"></i>Очікувані результати:</strong> Студенти розуміють важливість дотримання правил безпеки, знають, як діяти в екстремальних умовах.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div id="event-10" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-10" class="text-xl font-semibold text-white">
+                            <button id="button-10" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-10">
+                                <span>➕➖ Математичний батл «Технологи vs Економісти»</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-10" role="region" aria-labelledby="header-10" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-yellow-400"></i>Час та група:</strong> 4 пара, І курси</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-yellow-400"></i>Місце:</strong> Корпус</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-yellow-400"></i>Викладач(і):</strong> Наталія Губарь, Анна Семенюта, Ірина Хоніна</p>
+                                <p><strong><i class="fas fa-book mr-2 text-yellow-400"></i>Дисципліна:</strong> Математика</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-yellow-400"></i>Мета:</strong> Розвивати логічне мислення та навички командної роботи через розв’язування практичних задач.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-yellow-400"></i>Ключові завдання:</strong> Розв’язати практичні задачі, використати математичні знання для аналізу, проявити креативність.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-yellow-400"></i>Очікувані результати:</strong> Поглиблення зв’язку математики з фахом, формування практичних навичок, підвищення інтересу до аналітичного мислення.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    const answers = { q1: 'b' };
-    const totalQuestions = Object.keys(answers).length;
+            <!-- Четвер -->
+            <div class="day-section">
+                <h2 class="day-header text-3xl font-bold text-yellow-400">16 Жовтня (четвер)</h2>
+                 <div class="space-y-4">
+                     <div id="event-12" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-12" class="text-xl font-semibold text-white">
+                            <button id="button-12" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-12">
+                                <span>🔍 Інтегроване заняття «Детективи цифрової епохи»</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-12" role="region" aria-labelledby="header-12" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-teal-500"></i>Час та група:</strong> 1-2 пари, 21-a, 22-a</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-teal-500"></i>Місце:</strong> ауд № 3</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-teal-500"></i>Викладач(і):</strong> Наталія Губарь, Олена Сувальська</p>
+                                <p><strong><i class="fas fa-book mr-2 text-teal-500"></i>Дисципліна:</strong> Математика, Інформатика</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-teal-500"></i>Мета:</strong> Формувати медіаграмотність і критичне мислення через аналіз інформації.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-teal-500"></i>Ключові завдання:</strong> Розпізнати фейки, застосувати математичний аналіз, використати цифрові інструменти для верифікації.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-teal-500"></i>Очікувані результати:</strong> Студенти вчаться мислити критично, перевіряти інформацію, розпізнавати фейки.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div id="event-13" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-13" class="text-xl font-semibold text-white">
+                            <button id="button-13" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-13">
+                                <span>💼 "Professional Skills"</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-13" role="region" aria-labelledby="header-13" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-yellow-400"></i>Час та група:</strong> 3-4 пари, 31-3</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-yellow-400"></i>Місце:</strong> ПДАУ</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-yellow-400"></i>Викладач(і):</strong> Ніна Бондаренко</p>
+                                <p><strong><i class="fas fa-book mr-2 text-yellow-400"></i>Дисципліна:</strong> Іноземна мова (за проф. спрямуванням)</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-yellow-400"></i>Мета:</strong> Розвинути комунікативні навички англійською мовою в контексті майбутньої професійної діяльності, зокрема підготовки до співбесід.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-yellow-400"></i>Ключові завдання:</strong> Активізувати професійну лексику; відпрацювати навички самопрезентації та проходження інтерв'ю; навчитись складати резюме.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-yellow-400"></i>Очікувані результати:</strong> Студенти впевненіше використовують англійську для професійного спілкування та готові до проходження співбесіди.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="event-11" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-11" class="text-xl font-semibold text-white">
+                            <button id="button-11" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-11">
+                                <span>🧠 «INFOQUEST»</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-11" role="region" aria-labelledby="header-11" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-red-600"></i>Час та група:</strong> 4 пара, 11-i</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-red-600"></i>Місце:</strong> ауд № 23</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-red-600"></i>Викладач(і):</strong> Лілія Качала, Ірина Хоніна</p>
+                                <p><strong><i class="fas fa-book mr-2 text-red-600"></i>Дисципліна:</strong> Інформатика і комп'ютерна техніка</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-red-600"></i>Мета:</strong> Методична, дидактична та виховна: показати методику, сформувати інформаційну культуру, виховати здатність до взаємодії.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-red-600"></i>Ключові завдання:</strong> Розвивальні, пізнавальні та практичні: формувати навички мислення, закріпити знання, навчити застосовувати знання в ігрових ситуаціях.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-red-600"></i>Очікувані результати:</strong> Підвищення інтересу до інформатики, формування навичок роботи з інформацією, розвиток комунікативних умінь.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="event-14" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-14" class="text-xl font-semibold text-white">
+                            <button id="button-14" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-14">
+                                <span>✒️ Майстер-клас з каліграфії «Європейський день мов Workshop English»</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-14" role="region" aria-labelledby="header-14" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-red-600"></i>Час та група:</strong> 4 пара, 11-лд</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-red-600"></i>Місце:</strong> ауд № 10</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-red-600"></i>Викладач(і):</strong> Дарія Корабель</p>
+                                <p><strong><i class="fas fa-book mr-2 text-red-600"></i>Дисципліна:</strong> Іноземна мова</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-red-600"></i>Мета:</strong> Поєднати вивчення іноземної мови з творчою діяльністю, розвинути естетичний смак та дрібну моторику через мистецтво каліграфії.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-red-600"></i>Ключові завдання:</strong> Ознайомити з основами європейської каліграфії; вивчити англомовну термінологію; створити власну каліграфічну роботу.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-red-600"></i>Очікувані результати:</strong> Учасники отримали практичний досвід у каліграфії та збагатили словниковий запас з теми "мистецтво".</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="event-15" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-15" class="text-xl font-semibold text-white">
+                            <button id="button-15" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-15">
+                                <span>🏐 Матчева гра з волейболу</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-15" role="region" aria-labelledby="header-15" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-teal-500"></i>Час та група:</strong> 5 пара, команда</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-teal-500"></i>Місце:</strong> Спортивна зала</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-teal-500"></i>Викладач(і):</strong> Павло Мотрій</p>
+                                <p><strong><i class="fas fa-book mr-2 text-teal-500"></i>Дисципліна:</strong> Фізична культура</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-teal-500"></i>Мета:</strong> Сприяти розвитку командного духу, фізичної витривалості та популяризації волейболу серед студентської молоді.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-teal-500"></i>Ключові завдання:</strong> Провести товариську зустріч; відпрацювати тактичні та технічні навички гри; залучити вболівальників.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-teal-500"></i>Очікувані результати:</strong> Учасники отримали ігрову практику та покращили командну взаємодію. Підвищено інтерес до спорту.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    function clearPreviousFeedback() {
-        document.querySelectorAll('select').forEach(input => {
-            input.classList.remove('border-green-500','bg-green-50','text-green-900','border-red-500','bg-red-50','text-red-900');
-            input.classList.add('border-gray-300');
+            <!-- П'ятниця -->
+            <div class="day-section">
+                <h2 class="day-header text-3xl font-bold text-yellow-400">17 Жовтня (п'ятниця)</h2>
+                 <div class="space-y-4">
+                     <div id="event-17" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-17" class="text-xl font-semibold text-white">
+                            <button id="button-17" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-17">
+                                <span>🌸 Майстер-клас «Паперова флористика»</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-17" role="region" aria-labelledby="header-17" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-clock mr-2 text-red-600"></i>Час:</strong> 13:00</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-red-600"></i>Місце:</strong> ПОУНБ</p>
+                                <p><strong><i class="fas fa-user-tie mr-2 text-red-600"></i>Викладач(і):</strong> Світлана Дука, Наталія Кононенко, Анна Семенюта, Олена Сувальська</p>
+                                <p><strong><i class="fas fa-users mr-2 text-red-600"></i>Учасники:</strong> Викладачі</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-red-600"></i>Мета:</strong> Розвинути творчі здібності, креативне мислення та навички ручної праці через створення квіткових композицій з паперу.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-red-600"></i>Ключові завдання:</strong> Ознайомити з основними техніками паперової флористики; навчити створювати різні види квітів; розвинути почуття композиції.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-red-600"></i>Очікувані результати:</strong> Кожен учасник створив власну унікальну композицію з паперових квітів та отримав навички творчої самореалізації.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div id="event-16" class="bg-gray-800 rounded-lg shadow-lg">
+                        <h3 id="header-16" class="text-xl font-semibold text-white">
+                            <button id="button-16" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-16">
+                                <span>🎉 Підведення підсумків та нагородження переможців</span>
+                                <i class="fas fa-chevron-down icon" aria-hidden="true"></i>
+                            </button>
+                        </h3>
+                        <div id="content-16" role="region" aria-labelledby="header-16" class="accordion-content">
+                            <div class="p-6 border-t border-gray-700 space-y-3">
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-yellow-400"></i>Місце:</strong> Аудиторії груп</p>
+                                <p><strong><i class="fas fa-users mr-2 text-yellow-400"></i>Учасники:</strong> Переможці та учасники</p>
+                                <p><strong><i class="fas fa-bullseye mr-2 text-yellow-400"></i>Мета:</strong> Урочисто завершити тиждень, відзначити найактивніших учасників та переможців, стимулювати подальшу активність.</p>
+                                <p><strong><i class="fas fa-tasks mr-2 text-yellow-400"></i>Ключові завдання:</strong> Оголосити результати; нагородити переможців; створити святкову та мотивуючу атмосферу.</p>
+                                <p><strong><i class="fas fa-chart-line mr-2 text-yellow-400"></i>Очікувані результати:</strong> Студенти та викладачі отримали визнання своїх досягнень та мотивацію до участі у майбутніх заходах.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordionGroup = document.getElementById('accordion-group');
+            if (!accordionGroup) return;
+
+            const accordionButtons = Array.from(accordionGroup.querySelectorAll('.accordion-button'));
+
+            const toggleAccordion = (button, shouldOpen) => {
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                const content = document.getElementById(button.getAttribute('aria-controls'));
+
+                if (content) {
+                    const open = shouldOpen === undefined ? !isExpanded : shouldOpen;
+                    
+                    button.setAttribute('aria-expanded', open);
+                    if (open) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        content.style.maxHeight = '0px';
+                    }
+                }
+            };
+            
+            accordionGroup.addEventListener('click', (e) => {
+                const targetButton = e.target.closest('.accordion-button');
+                if (targetButton) {
+                    const isOpening = targetButton.getAttribute('aria-expanded') === 'false';
+                    accordionButtons.forEach(button => {
+                        if (button !== targetButton) {
+                            toggleAccordion(button, false);
+                        }
+                    });
+                    toggleAccordion(targetButton, isOpening);
+                }
+            });
+
+            accordionGroup.addEventListener('keydown', (e) => {
+                const target = e.target.closest('.accordion-button');
+                if (!target) return;
+
+                const currentIndex = accordionButtons.indexOf(target);
+                let newIndex = -1;
+
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    newIndex = (currentIndex + 1) % accordionButtons.length;
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    newIndex = (currentIndex - 1 + accordionButtons.length) % accordionButtons.length;
+                }
+
+                if (newIndex !== -1) {
+                    accordionButtons[newIndex].focus();
+                }
+            });
+            
+            const openAccordionFromHash = () => {
+                if (window.location.hash) {
+                    const element = document.querySelector(window.location.hash);
+                    if(element){
+                        const buttonToOpen = element.querySelector('.accordion-button');
+                        if (buttonToOpen) {
+                            // Ensure other accordions are closed
+                            accordionButtons.forEach(btn => toggleAccordion(btn, false));
+                            // Open the target accordion
+                            toggleAccordion(buttonToOpen, true);
+                            // Scroll to the element
+                            setTimeout(() => {
+                                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }, 400); // Wait for animation
+                        }
+                    }
+                }
+            };
+
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    const openAccordionButton = accordionGroup.querySelector('.accordion-button[aria-expanded="true"]');
+                    if (openAccordionButton) {
+                        const content = document.getElementById(openAccordionButton.getAttribute('aria-controls'));
+                        if(content) {
+                           content.style.maxHeight = content.scrollHeight + 'px';
+                        }
+                    }
+                }, 150);
+            });
+
+            openAccordionFromHash();
+            window.addEventListener('hashchange', openAccordionFromHash, false);
         });
-        resultDiv.classList.add('hidden');
-    }
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        let score = 0;
-        clearPreviousFeedback();
-
-        for (const name in answers) {
-            const inputElement = form.elements[name];
-            if (!inputElement) continue;
-            const isCorrect = inputElement.value.trim().toLowerCase() === answers[name].toLowerCase();
-            if (isCorrect) {
-                score++;
-                inputElement.classList.add('border-green-500','bg-green-50','text-green-900');
-            } else {
-                inputElement.classList.add('border-red-500','bg-red-50','text-red-900');
-            }
-        }
-
-        resultDiv.innerHTML = `Ви набрали <strong class="text-green-600">${score}</strong> з <strong>${totalQuestions}</strong> балів!`;
-        resultDiv.classList.remove('hidden');
-        resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-
-    resetBtn.addEventListener('click', function() {
-        form.reset();
-        clearPreviousFeedback();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-});
-</script>
-
+    </script>
 </body>
 </html>
+
+
+
+
