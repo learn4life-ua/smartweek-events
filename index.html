@@ -32,6 +32,57 @@
             margin-bottom: 1.5rem;
             margin-top: 2.5rem;
         }
+        
+        /* --- Timeline Styles --- */
+        .timeline-container {
+            position: relative;
+            padding-left: 3.5rem; /* Space for the timeline line and dots */
+        }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 1.25rem;
+            top: 1.75rem;
+            bottom: 0;
+            width: 4px;
+            background-color: #374151; /* gray-700 */
+            border-radius: 2px;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.25rem; /* Position the dot on the line */
+            top: 1.75rem; /* Align vertically with the button */
+            height: 1.25rem;
+            width: 1.25rem;
+            border-radius: 9999px;
+            background-color: #1f2937; /* gray-800 */
+            border: 4px solid #FBBF24; /* yellow-400 */
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        /* --- Animation Styles --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.7s ease-out forwards;
+        }
+
+
         @media print {
             .accordion-content {
                 max-height: none !important;
@@ -49,10 +100,8 @@
 <body class="bg-gray-900 text-gray-200">
 
     <div class="container mx-auto px-4 py-12">
-        <header class="text-center mb-10">
-            <!-- Banner Image path updated to be relative -->
-            <img src="smartweek-banner.png" alt="Банер SmartWeek" class="max-w-lg mx-auto mb-8 rounded-lg">
-
+        <header class="text-center mb-10 opacity-0">
+            <img src="smartweek-banner1.png" alt="Банер SmartWeek" class="max-w-lg mx-auto mb-8 rounded-lg">
             <h2 class="text-2xl text-gray-300 mb-4">ВСП «Аграрно-економічний фаховий коледж ПДАУ»</h2>
             <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">ПРОГРАМА тижня циклової комісії загальноосвітніх дисциплін</h1>
             <p class="text-lg text-gray-400">«SmartWeek: Вчися. Грай. Перемагай» (13-17 жовтня 2025 року)</p>
@@ -61,10 +110,10 @@
         <main id="accordion-group" class="max-w-4xl mx-auto">
             
             <!-- Понеділок -->
-            <div class="day-section">
+            <div class="day-section opacity-0">
                 <h2 class="day-header text-3xl font-bold text-yellow-400">13 Жовтня (понеділок)</h2>
-                <div class="space-y-4">
-                    <div id="event-2" class="bg-gray-800 rounded-lg shadow-lg">
+                <div class="timeline-container">
+                    <div id="event-2" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-2" class="text-xl font-semibold text-white">
                             <button id="button-2" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-2">
                                 <span>🏃‍♂️ Естафети в рамках «Cool Games»</span>
@@ -83,7 +132,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="event-1" class="bg-gray-800 rounded-lg shadow-lg">
+                    <div id="event-1" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-1" class="text-xl font-semibold text-white">
                             <button id="button-1" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-1">
                                 <span>🕵️‍♀️ Інтелектуальна гра «НотаЄнота. Шахрайські схеми»</span>
@@ -102,7 +151,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="event-4" class="bg-gray-800 rounded-lg shadow-lg">
+                    <div id="event-4" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-4" class="text-xl font-semibold text-white">
                             <button id="button-4" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-4">
                                 <span>📜 «Чумацькі мандри як сторінка історії української культури»</span>
@@ -111,8 +160,8 @@
                         </h3>
                         <div id="content-4" role="region" aria-labelledby="header-4" class="accordion-content">
                             <div class="p-6 border-t border-gray-700 space-y-3">
-                                <p><strong><i class="fas fa-clock mr-2 text-yellow-400"></i>Час та група:</strong> 4 пара, 21-м, 21-3</p>
-                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-yellow-400"></i>Місце:</strong> ауд. № 3</p>
+                                <p><strong><i class="fas fa-clock mr-2 text-yellow-400"></i>Час та група:</strong> 4 пара, 21-м</p>
+                                <p><strong><i class="fas fa-map-marker-alt mr-2 text-yellow-400"></i>Місце:</strong> ауд. № 11</p>
                                 <p><strong><i class="fas fa-user-tie mr-2 text-yellow-400"></i>Викладач(і):</strong> Тетяна Матвієнко</p>
                                 <p><strong><i class="fas fa-book mr-2 text-yellow-400"></i>Дисципліна:</strong> Історія України</p>
                                 <p><strong><i class="fas fa-bullseye mr-2 text-yellow-400"></i>Мета:</strong> Дослідити чумакування як торгівельно-економічне та культурне явище.</p>
@@ -121,7 +170,7 @@
                             </div>
                         </div>
                     </div>
-                     <div id="event-3" class="bg-gray-800 rounded-lg shadow-lg">
+                     <div id="event-3" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-3" class="text-xl font-semibold text-white">
                             <button id="button-3" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-3">
                                 <span>✨ Старт SmartWeek Challenge: «Академічна доброчесність у дзеркалі історії»</span>
@@ -139,7 +188,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="event-5" class="bg-gray-800 rounded-lg shadow-lg">
+                    <div id="event-5" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-5" class="text-xl font-semibold text-white">
                             <button id="button-5" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-5">
                                 <span>🏛️ Віртуальні екскурсії музеями Полтавщини</span>
@@ -161,10 +210,10 @@
             </div>
 
             <!-- Вівторок -->
-            <div class="day-section">
+            <div class="day-section opacity-0">
                 <h2 class="day-header text-3xl font-bold text-yellow-400">14 Жовтня (вівторок)</h2>
-                <div class="space-y-4">
-                     <div id="event-8" class="bg-gray-800 rounded-lg shadow-lg">
+                <div class="timeline-container">
+                     <div id="event-8" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-8" class="text-xl font-semibold text-white">
                             <button id="button-8" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-8">
                                 <span>🇬🇧 «Speak & Play: інтерактивні ігри англійською»</span>
@@ -183,7 +232,7 @@
                             </div>
                         </div>
                     </div>
-                     <div id="event-6" class="bg-gray-800 rounded-lg shadow-lg">
+                     <div id="event-6" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-6" class="text-xl font-semibold text-white">
                             <button id="button-6" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-6">
                                 <span>📚 «У слові — сила: грай та відкривай літературу»</span>
@@ -202,7 +251,7 @@
                             </div>
                         </div>
                     </div>
-                     <div id="event-7" class="bg-gray-800 rounded-lg shadow-lg">
+                     <div id="event-7" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-7" class="text-xl font-semibold text-white">
                             <button id="button-7" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-7">
                                 <span>🏆 Олімпійський урок «Sport games»</span>
@@ -225,10 +274,10 @@
             </div>
 
             <!-- Середа -->
-            <div class="day-section">
+            <div class="day-section opacity-0">
                 <h2 class="day-header text-3xl font-bold text-yellow-400">15 Жовтня (середа)</h2>
-                 <div class="space-y-4">
-                     <div id="event-9" class="bg-gray-800 rounded-lg shadow-lg">
+                 <div class="timeline-container">
+                     <div id="event-9" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-9" class="text-xl font-semibold text-white">
                             <button id="button-9" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-9">
                                 <span>🚒 Екскурсія до Музею МЧС</span>
@@ -247,7 +296,7 @@
                             </div>
                         </div>
                     </div>
-                     <div id="event-10" class="bg-gray-800 rounded-lg shadow-lg">
+                     <div id="event-10" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-10" class="text-xl font-semibold text-white">
                             <button id="button-10" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-10">
                                 <span>➕➖ Математичний батл «Технологи vs Економісти»</span>
@@ -270,10 +319,10 @@
             </div>
 
             <!-- Четвер -->
-            <div class="day-section">
+            <div class="day-section opacity-0">
                 <h2 class="day-header text-3xl font-bold text-yellow-400">16 Жовтня (четвер)</h2>
-                 <div class="space-y-4">
-                     <div id="event-12" class="bg-gray-800 rounded-lg shadow-lg">
+                 <div class="timeline-container">
+                     <div id="event-12" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-12" class="text-xl font-semibold text-white">
                             <button id="button-12" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-12">
                                 <span>🔍 Інтегроване заняття «Детективи цифрової епохи»</span>
@@ -292,7 +341,7 @@
                             </div>
                         </div>
                     </div>
-                     <div id="event-13" class="bg-gray-800 rounded-lg shadow-lg">
+                     <div id="event-13" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-13" class="text-xl font-semibold text-white">
                             <button id="button-13" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-13">
                                 <span>💼 "Professional Skills"</span>
@@ -311,7 +360,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="event-11" class="bg-gray-800 rounded-lg shadow-lg">
+                    <div id="event-11" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-11" class="text-xl font-semibold text-white">
                             <button id="button-11" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-11">
                                 <span>🧠 «INFOQUEST»</span>
@@ -330,7 +379,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="event-14" class="bg-gray-800 rounded-lg shadow-lg">
+                    <div id="event-14" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-14" class="text-xl font-semibold text-white">
                             <button id="button-14" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-14">
                                 <span>✒️ Майстер-клас з каліграфії «Європейський день мов Workshop English»</span>
@@ -349,7 +398,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="event-15" class="bg-gray-800 rounded-lg shadow-lg">
+                    <div id="event-15" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-15" class="text-xl font-semibold text-white">
                             <button id="button-15" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-15">
                                 <span>🏐 Матчева гра з волейболу</span>
@@ -372,10 +421,10 @@
             </div>
 
             <!-- П'ятниця -->
-            <div class="day-section">
+            <div class="day-section opacity-0">
                 <h2 class="day-header text-3xl font-bold text-yellow-400">17 Жовтня (п'ятниця)</h2>
-                 <div class="space-y-4">
-                     <div id="event-17" class="bg-gray-800 rounded-lg shadow-lg">
+                 <div class="timeline-container">
+                     <div id="event-17" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-17" class="text-xl font-semibold text-white">
                             <button id="button-17" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-17">
                                 <span>🌸 Майстер-клас «Паперова флористика»</span>
@@ -394,7 +443,7 @@
                             </div>
                         </div>
                     </div>
-                     <div id="event-16" class="bg-gray-800 rounded-lg shadow-lg">
+                     <div id="event-16" class="timeline-item bg-gray-800 rounded-lg shadow-lg">
                         <h3 id="header-16" class="text-xl font-semibold text-white">
                             <button id="button-16" class="accordion-button w-full flex justify-between items-center text-left p-6 hover:bg-gray-700 rounded-lg focus:outline-none" aria-expanded="false" aria-controls="content-16">
                                 <span>🎉 Підведення підсумків та нагородження переможців</span>
@@ -424,6 +473,7 @@
 
             const accordionButtons = Array.from(accordionGroup.querySelectorAll('.accordion-button'));
 
+            // --- Accordion Logic ---
             const toggleAccordion = (button, shouldOpen) => {
                 const isExpanded = button.getAttribute('aria-expanded') === 'true';
                 const content = document.getElementById(button.getAttribute('aria-controls'));
@@ -479,35 +529,35 @@
                     if(element){
                         const buttonToOpen = element.querySelector('.accordion-button');
                         if (buttonToOpen) {
-                            // Ensure other accordions are closed
                             accordionButtons.forEach(btn => toggleAccordion(btn, false));
-                            // Open the target accordion
                             toggleAccordion(buttonToOpen, true);
-                            // Scroll to the element
                             setTimeout(() => {
                                 element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            }, 400); // Wait for animation
+                            }, 400); 
                         }
                     }
                 }
             };
 
-            let resizeTimeout;
             window.addEventListener('resize', () => {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(() => {
-                    const openAccordionButton = accordionGroup.querySelector('.accordion-button[aria-expanded="true"]');
-                    if (openAccordionButton) {
-                        const content = document.getElementById(openAccordionButton.getAttribute('aria-controls'));
-                        if(content) {
-                           content.style.maxHeight = content.scrollHeight + 'px';
-                        }
+                const openAccordionButton = accordionGroup.querySelector('.accordion-button[aria-expanded="true"]');
+                if (openAccordionButton) {
+                    const content = document.getElementById(openAccordionButton.getAttribute('aria-controls'));
+                    if(content) {
+                       content.style.maxHeight = content.scrollHeight + 'px';
                     }
-                }, 150);
-            });
+                }
+            }, { passive: true });
 
             openAccordionFromHash();
             window.addEventListener('hashchange', openAccordionFromHash, false);
+
+            // --- Staggered Animation Logic ---
+            const animatedElements = document.querySelectorAll('header, .day-section');
+            animatedElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 200}ms`;
+                el.classList.add('animate-fade-in-up');
+            });
         });
     </script>
 </body>
